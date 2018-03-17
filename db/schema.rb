@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 20180317040857) do
   create_table "posts", force: :cascade do |t|
     t.text "body"
     t.string "title"
+    t.integer "user_id"
+    t.float "goal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -26,6 +28,7 @@ ActiveRecord::Schema.define(version: 20180317040857) do
     t.integer "post_id"
     t.float "amount"
     t.integer "user_id"
+    t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
