@@ -8,6 +8,9 @@ end
 # users lib
 gem 'devise'
 
+# users policies
+gem 'pundit'
+
 # User general ui
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
