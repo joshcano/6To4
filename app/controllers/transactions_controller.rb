@@ -1,5 +1,4 @@
 class TransactionsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
@@ -28,6 +27,7 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Post.find(params['post_id']).transactions.new(transaction_params)
     @transaction.user = current_user
+    authorize @transaction
     @transaction.save
 
     respond_to do |format|
