@@ -9,3 +9,5 @@ docker-compose run web rake db:create db:migrate db:seed
 # if your database is already created adjust the db: params
 docker-compose run web rake db:migrate
 
+# at this point you should be able to get to the application on localhost:3000
+
