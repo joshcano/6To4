@@ -16,6 +16,6 @@ end
 
 Post.all.each do |post|
   User.all.each do |user|
-    post.transactions.create(amount: rand(33), user: user)
+    post.transactions.create(amount: rand(33), user: user) unless user == post.user
   end
 end

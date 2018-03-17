@@ -19,5 +19,35 @@
   <strong>Goal:</strong>
   <%= @post.goal %>
 </p>
+
+<p>
+  <strong>Awarded:</strong>
+  <%= @post.awarded %>
+</p>
+
+<p>
+  <strong>Transactions:</strong>
+  <p>
+    <% @post.transactions.each do |transaction| %>
+      <%= transaction.user.email %>
+      <%= transaction.amount %>
+      <%= transaction.comment %>
+      <br>
+    <% end %>
+  </p>
+</p>
+
+<% if user_signed_in? %>
+  <%= form_for(@post.transactions.new) do |f| %>
+    <p>Amount:</p> 
+    <%= f.text_field :amount %>
+    <p>Comment:</p>
+    <%= f.text_field :comment %>
+    <%= submit_tag 'Loan' %>
+  <% end %>
+<% else %>
+  <%= link_to "Please Log In to support #{@post.user.email}", new_user_session_path %>
+  <br>
+<% end %>
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
