@@ -38,7 +38,7 @@
 </p>
 
 <% if user_signed_in? %>
-  <%= form_for(@post.transactions.new) do |f| %>
+  <%= form_for(@post.transactions.new, url: post_transactions_path(@post)) do |f| %>
     <p>Amount:</p> 
     <%= f.text_field :amount %>
     <p>Comment:</p>

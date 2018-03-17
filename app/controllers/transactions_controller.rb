@@ -1,4 +1,5 @@
 class TransactionsController < ApplicationController
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
@@ -25,11 +26,13 @@ class TransactionsController < ApplicationController
   # POST /transactions
   # POST /transactions.json
   def create
-    @transaction = Transaction.new(transaction_params)
+    @transaction = Post.find(params['post_id']).transactions.new(transaction_params)
+    @transaction.user = current_user
+    @transaction.save
 
     respond_to do |format|
       if @transaction.save
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }
+        format.html { redirect_to @transaction.post, notice: 'Transaction was successfully created.' }
         format.json { render :show, status: :created, location: @transaction }
       else
         format.html { render :new }
@@ -70,6 +73,6 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:post_id, :amount, :user_id)
+      params.require(:transaction).permit(:post_id, :comment, :amount, :user_id)
     end
 end
