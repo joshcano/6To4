@@ -1,0 +1,13 @@
+<% if flash.keys.include? 'error' %>
+  <div class="alert alert-danger alert-dismissible fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Error!</strong> <%= flash['error'] %>
+  </div>
+<% end %>
+
+<% if flash.keys.include? 'notice' %>
+  <div class="alert alert-success alert-dismissible fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Success!</strong> <%= flash['notice'] %>
+  </div>
+<% end %>
