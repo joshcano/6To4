@@ -1,0 +1,8 @@
+<div class='nested-fields'>
+  <p class='field'>
+    <%= f.object.user.email %>
+    <%= f.text_field :user_id, class: 'user_id-field', value: f.object.user.nil? ? current_user.id : f.object.user.id %>
+    <%= f.text_field :amount, class: 'amount-field' %>
+    <%= f.text_field :comment, class: 'comment-field' %>
+  </p>
+</div>

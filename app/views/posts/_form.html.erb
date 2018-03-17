@@ -26,6 +26,12 @@
     <%= form.text_field :goal, id: :post_goal %>
   </div>
 
+  <div id='tasks'>
+      <%= form.fields_for :transactions do |transaction| %>
+        <%= render 'transaction_fields', f: transaction %>
+      <% end %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

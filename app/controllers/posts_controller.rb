@@ -20,6 +20,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    @post.transactions.new(user: current_user)
   end
 
   # POST /posts
@@ -70,6 +71,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:body, :title, :goal)
+      params.require(:post).permit(:body, :title, :goal, transactions_attributes: [:id, :user_id, :amount, :comment])
     end
 end

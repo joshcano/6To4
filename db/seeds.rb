@@ -14,3 +14,8 @@ users.each do |user|
   new_user.posts.create(title: 'test title', body: 'test body', goal: '100')
 end
 
+Post.all.each do |post|
+  User.all.each do |user|
+    post.transactions.create(amount: rand(33), user: user)
+  end
+end
