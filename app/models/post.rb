@@ -12,4 +12,8 @@ class Post < ApplicationRecord
   def awarded
     transactions.pluck(:amount).inject(0) { |sum,x| sum + x }
   end
+
+  def short_desc
+    body.length > 150 ? body[0..150] + '...' : body
+  end
 end

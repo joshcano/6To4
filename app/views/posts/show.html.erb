@@ -33,15 +33,24 @@
 
   <p>
     <strong>Transactions:</strong>
-    <p class="transaction-list">
-      <% @post.transactions.each do |transaction| %>
-        <div class="transaction">
-          <span class="email"><%= transaction.user.email %></span>
-          <span class="amount"><%= transaction.amount %></span>
-          <span class="comment"><%= transaction.comment %></span>
-        </div>
-      <% end %>
-    </p>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Comment</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @post.transactions.each do |transaction| %>
+          <tr>
+            <td><%= transaction.user.email %></td>
+            <td><%= transaction.comment %></td>
+            <td><%= transaction.amount %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </p>
 
   <!-- remember to ask why can't this be put above the transactions -->

@@ -9,7 +9,7 @@
                 <small><%= post.user.email %></small>
             </span>
             <span onclick="location='/posts/<%=post.id%>'" class="body">
-                <%= post.body %>
+                <%= post.short_desc %>
             </span>
             <span onclick="location='/posts/<%=post.id%>'" class="goal">
                 $<%=post.awarded%> of $<%=post.goal%>

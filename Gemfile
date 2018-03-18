@@ -5,6 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# faker items
+gem 'betterlorem'
+
 # allows us to add images to a record
 gem 'paperclip'
 
