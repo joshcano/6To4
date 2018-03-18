@@ -26,11 +26,25 @@
     <%= form.text_field :goal, id: :post_goal %>
   </div>
 
-  <div id='tasks'>
-      <%= form.fields_for :transactions do |transaction| %>
-        <%= render 'transaction_fields', f: transaction %>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Amount</th>
+        <th>Comment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @post.transactions.each do |transaction| %>
+        <tr>
+          <td><%= transaction.user.email %></td>
+          <td><%= transaction.amount %></td>
+          <td><%= transaction.comment %></td>
+        </tr>
       <% end %>
-  </div>
+    </tbody>
+  </table>
+
   <hr>
   <div id='pay_back'>
     <input type='text'>
