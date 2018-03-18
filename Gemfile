@@ -5,6 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# allows us to add images to a record
+gem 'paperclip'
+
 # users lib
 gem 'devise'
 
