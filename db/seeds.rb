@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 User.destroy_all
 Post.destroy_all
-users = %w[josh@example.com matt@example.com james@example.com]
+users = %w[josh@example.com matt@example.com james@example.com kim@example.com]
 users.each do |user|
   new_user =  User.new(email: user, password: 'password')
   new_user.save!
@@ -19,3 +19,10 @@ Post.all.each do |post|
     post.transactions.create(amount: rand(33), user: user) unless user == post.user
   end
 end
+
+kim = User.find_by(email: 'kim@example.com')
+kim.avatar = File.open("#{Rails.root}/avatars/stock_photos/kim.jpg")
+kim.save
+post = kim.posts.first
+post.main_img = File.open("#{Rails.root}/avatars/stock_photos/new_biz.jpg")
+post.save

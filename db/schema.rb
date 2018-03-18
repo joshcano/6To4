@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180317040857) do
+ActiveRecord::Schema.define(version: 20180318044934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,10 @@ ActiveRecord::Schema.define(version: 20180317040857) do
     t.float "goal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "main_img_file_name"
+    t.string "main_img_content_type"
+    t.integer "main_img_file_size"
+    t.datetime "main_img_updated_at"
   end
 
   create_table "transactions", force: :cascade do |t|
@@ -46,6 +50,10 @@ ActiveRecord::Schema.define(version: 20180317040857) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.integer "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
