@@ -1,53 +1,64 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= @post.user.email %>
-</p>
+<section class="post-detail">
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+  <div class="post-detail-banner">
+    <%= image_tag @post.main_img.url %>
+  </div>
 
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
+  <h1 class="post-detail-title"> <%= @post.title %> </h1>
 
-<p>
-  <strong>Goal:</strong>
-  <%= @post.goal %>
-</p>
+  <div class="post-detail-progress">
 
-<p>
-  <strong>Awarded:</strong>
-  <%= @post.awarded %>
-</p>
+    <span class="right">
+      <strong>Awarded:</strong>
+      <%= @post.awarded %>
+    </span>
+    <span class="left">
+      <strong>Goal:</strong>
+      <%= @post.goal %>
+    </span>
 
-<p>
-  <strong>Transactions:</strong>
+  </div>
+
+  <div class="percentage">
+    <span style="width: <%= @post.awarded / @post.goal * 100 %>%"></span>
+  </div>
+
+  <h3 class="text-left"> Details </h3>
+  <article class="post-detail-body">
+    <%= @post.body %>
+  </article>
+
+  <!-- <%= image_tag @post.user.avatar.url(:thumb) %> -->
+  <!-- <%= @post.user.email %> -->
+
   <p>
-    <% @post.transactions.each do |transaction| %>
-      <%= transaction.user.email %>
-      <%= transaction.amount %>
-      <%= transaction.comment %>
-      <br>
-    <% end %>
+    <strong>Transactions:</strong>
+    <p class="transaction-list">
+      <% @post.transactions.each do |transaction| %>
+        <div class="transaction">
+          <span class="email"><%= transaction.user.email %></span>
+          <span class="amount"><%= transaction.amount %></span>
+          <span class="comment"><%= transaction.comment %></span>
+        </div>
+      <% end %>
+    </p>
   </p>
-</p>
 
-<% if user_signed_in? %>
-  <%= form_for(@post.transactions.new, url: post_transactions_path(@post)) do |f| %>
-    <p>Amount:</p> 
-    <%= f.text_field :amount %>
-    <p>Comment:</p>
-    <%= f.text_field :comment %>
-    <%= submit_tag 'Loan' %>
+  <!-- remember to ask why can't this be put above the transactions -->
+  <% if user_signed_in? %>
+    <%= form_for(@post.transactions.new, url: post_transactions_path(@post)) do |f| %>
+      <p>Amount:</p> 
+      <%= f.text_field :amount %>
+      <p>Comment:</p>
+      <%= f.text_field :comment %>
+      <%= submit_tag 'Loan' %>
+    <% end %>
+  <% else %>
+    <%= link_to "Please Log In to support #{@post.user.email}", new_user_session_path %> <br />
   <% end %>
-<% else %>
-  <%= link_to "Please Log In to support #{@post.user.email}", new_user_session_path %>
-  <br>
-<% end %>
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+
+  <%= link_to 'Edit', edit_post_path(@post) %> |
+  <%= link_to 'Back', posts_path %>
+</section>

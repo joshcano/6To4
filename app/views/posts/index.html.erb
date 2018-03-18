@@ -4,11 +4,19 @@
     <h1>Posts</h1>
     <% @posts.each do |post| %>
         <article class="post-summary-line">
-            <span onclick="location='/posts/<%=post.id%>'" class="user">   <%= post.user.email %></span>
-            <span onclick="location='/posts/<%=post.id%>'" class="title">  <%= post.title      %></span>
-            <span onclick="location='/posts/<%=post.id%>'" class="body">   <%= post.body       %></span>
-            <span onclick="location='/posts/<%=post.id%>'" class="goal">   <%= post.goal       %></span>
-            <span onclick="location='/posts/<%=post.id%>'" class="awarded"><%= post.awarded    %></span>
+            <span onclick="location='/posts/<%=post.id%>'" class="thumb">
+                <%= image_tag post.main_img.url(:thumb) %>
+            </span>
+            <span onclick="location='/posts/<%=post.id%>'" class="title">
+                <div class="post-summary-title"><%= post.title %></div>
+                <small><%= post.user.email %></small>
+            </span>
+            <span onclick="location='/posts/<%=post.id%>'" class="body">
+                <%= post.body %>
+            </span>
+            <span onclick="location='/posts/<%=post.id%>'" class="goal">
+                $<%=post.awarded%> of $<%=post.goal%>
+            </span>
             <span class="crud">
                 <% if policy(post).destroy? %>
                     <div><%= link_to 'Edit', edit_post_path(post) %></div>
