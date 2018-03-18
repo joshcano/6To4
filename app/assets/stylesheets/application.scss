@@ -1,3 +1,55 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 @import 'rails_bootstrap_forms';
+
+$color_call_to_action: #3c0;
+$color_navbar: #282828;
+
+html, body {
+    font-family: Tahoma, Geneva, sans-serif;
+}
+
+nav.navbar {
+    background-color: $color_navbar;
+}
+
+.navbar-default .navbar-brand {
+    color: #ccc;
+    font-weight: 300;
+}
+
+.post-summary-line {
+    border-bottom: #ccc solid 1px;
+    margin-bottom: 2em;
+    min-height: 5em;
+    font-size: 0;
+}
+
+.post-summary-container h1 {
+    width: 90vw;
+    margin: .5em auto;
+}
+
+.post-summary-line {
+    position: relative;
+    margin: 25px auto;
+    display: flex;
+    width: 90vw;
+}
+
+.post-summary-line > * {
+    justify-content: space-around;
+    align-items: baseline;
+    box-sizing: border-box;
+    background-color: #ccc;
+    display: inline-block;
+    text-align: center;
+    font-size: 10pt;
+    padding: .5em 0;
+    width: 14vw;
+    margin: 0;
+}
+
+.post-summary-line > .user {
+    
+}
