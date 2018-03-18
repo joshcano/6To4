@@ -1,56 +1,45 @@
-<%= form_with(model: post, local: true) do |form| %>
-  <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-      <% post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <%= bootstrap_form_with(model: post, local: true) do |form| %>
+    <% if post.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+  
+        <ul>
+        <% post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+      
+  <%= form.text_field :title, id: :post_title %>
+      <%= form.text_area :body, id: :post_body %>
+      <%= form.text_field :goal, id: :post_goal %>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Amount</th>
+          <th>Comment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @post.transactions.each do |transaction| %>
+          <tr>
+            <td><%= transaction.user.email %></td>
+            <td><%= transaction.amount %></td>
+            <td><%= transaction.comment %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  
+    <hr>
+    <div id='pay_back'>
+      <input type='text'>
+    </div>
+  
+    <div class="actions">
+      <%= form.submit %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :post_title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body, id: :post_body %>
-  </div>
-
-  <div class="field">
-    <%= form.label :goal %>
-    <%= form.text_field :goal, id: :post_goal %>
-  </div>
-
-  <table class='table'>
-    <thead>
-      <tr>
-        <th>Email</th>
-        <th>Amount</th>
-        <th>Comment</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @post.transactions.each do |transaction| %>
-        <tr>
-          <td><%= transaction.user.email %></td>
-          <td><%= transaction.amount %></td>
-          <td><%= transaction.comment %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <hr>
-  <div id='pay_back'>
-    <input type='text'>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>

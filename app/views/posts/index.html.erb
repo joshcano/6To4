@@ -1,35 +1,27 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Posts</h1>
-
-<table class='table'>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Title</th>
-      <th>Body</th>
-      <th>Goal</th>
-      <th>Amount Recieved</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<section class="post-summary-container">
     <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.user.email %></td>
-        <td><%= post.title %></td>
-        <td><%= post.body %></td>
-        <td><%= post.goal %></td>
-        <td><%= post.awarded %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <article class="post-summary-line">
+            <span onclick="location='/posts/<%=post.id%>'" class="thumb">
+                <%= image_tag post.main_img.url(:thumb) %>
+            </span>
+            <span onclick="location='/posts/<%=post.id%>'" class="title">
+                <div class="post-summary-title"><%= post.title %></div>
+                <small><%= post.user.email %></small>
+            </span>
+            <span onclick="location='/posts/<%=post.id%>'" class="body">
+                <%= post.short_desc %>
+            </span>
+            <span onclick="location='/posts/<%=post.id%>'" class="goal">
+                $<%=post.awarded%> of $<%=post.goal%>
+            </span>
+            <span class="crud">
+                <% if policy(post).destroy? %>
+                    <div><%= link_to 'Edit', edit_post_path(post) %></div>
+                    <div><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+                <% end %>
+            </span>
+        </article>
     <% end %>
-  </tbody>
-</table>
-
+</section>
 <br>
-
 <%= link_to 'New Post', new_post_path %>

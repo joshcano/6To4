@@ -26,18 +26,18 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li>
               <% if user_signed_in? %>
-                <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+                <li> <%= image_tag current_user.avatar.url(:small) %> </li>
+                <li> <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %> </li>
               <% else %>
-                <%= link_to 'Log In', new_user_session_path %>
+                <li> <%= link_to 'Log In', new_user_session_path %> </li>
               <% end %>
             </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-    <div class="container">
+    <div class="app-container">
       <%= render 'layouts/flash_notifications' %>
       <%= yield %>
     </div>
