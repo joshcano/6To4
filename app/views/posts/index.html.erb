@@ -1,7 +1,4 @@
-<p id="notice"><%= notice %></p>
-
 <section class="post-summary-container">
-    <h1>Posts</h1>
     <% @posts.each do |post| %>
         <article class="post-summary-line">
             <span onclick="location='/posts/<%=post.id%>'" class="thumb">
